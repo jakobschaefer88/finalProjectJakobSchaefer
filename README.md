@@ -15,22 +15,25 @@ As for the scrolling sidebar, each user would be able to choose their widgets th
 ### Dependencies
 
 ```
-pip install requirements.txt
+pip install -r requirements.txt
+```
+
+## Migrating Program
+
+Don't forget to change into the correct directory
+```
+python manage.py makemigrations
+python manage.py migrations
+```
+
+## Creating SuperUser
+```
+python manage.py createsuperuser
 ```
 
 ### Executing program
-
-* How to run the program
-* Step-by-step bullets
 ```
-code blocks for commands
-```
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
+python manage.py runserver
 ```
 
 ## Authors
@@ -42,8 +45,7 @@ ex. Jakob Schaefer
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+* [Django](https://www.djangoproject.com/)
+* [PrettyPrinted](https://prettyprinted.com/tutorials/creating-a-poll-app-in-django/)
+* [Youtube](https://www.youtube.com/watch?v=F5mRW0jo-U4)
+* [Youtube](https://www.youtube.com/watch?v=rHux0gMZ3Eg&t=160s)
