@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>My Dashboard</h1>
+
+<div class="widgets-container">
+    {% for widget in widgets %}
+        {% include widget.template with widget.context %}
+    {% empty %}
+        <p>No widgets yet. <a hreg="{% url 'widget_list' %}">Add some!</a></p>
+    {% endfor %}
+</div>
+
+<a href="{% url 'widget_list' %}">+ Add Widget</a>
+{% endblock %}
