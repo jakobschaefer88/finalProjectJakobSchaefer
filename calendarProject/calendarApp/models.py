@@ -7,6 +7,7 @@ class Event(models.Model):
     description = models.TextField(blank=True)
     startTime = models.DateTimeField()
     endTime = models.DateTimeField()
+    allDay = models.BooleanField(default=False)
     createdAt = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

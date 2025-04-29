@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ year }} - {{ month }}</h1>
+
+<div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+    <a href="?month={{ prev_month }}&year={{ prev_year }}">⬅️ Previous Month</a>
+    <a href="?month={{ next_month }}&year={{ next_year }}">Next Month ➡️</a>
+</div>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th>
+            <th>Thu</th><th>Fri</th><th>Sat</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for week in month_calendar %}
+        <tr>
+            {% for day in week %}
+            <td {% if not day.is_current_month %} style="background-color: #eee;" {% endif %}>
+                <div>{{ day.date.day }}</div>
+                {% for event in day.events %}
+                    <div style="background: lightblue; margin-top: 5px; padding: 2px; font-size: small;">
+                        {{ event.title }}
+                    </div>
+                {% endfor %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'dashboard' %}">⬅️ Back to Dashboard</a>
+{% endblock %}
