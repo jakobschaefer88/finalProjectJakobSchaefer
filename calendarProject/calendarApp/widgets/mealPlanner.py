@@ -3,7 +3,7 @@ from .base import BaseWidget
 
 class MealPlannerWidget(BaseWidget):
     name = 'mealPlanner'
-    template_name = "calendarApp/widgets/meal_planner.html"
+    template_name = "calendarApp/widgets/mealPlanner.html"
 
     def get_context_data(self, user=None, config=None):
         today = datetime.date.today()

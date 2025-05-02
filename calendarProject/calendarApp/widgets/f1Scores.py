@@ -4,7 +4,7 @@ from .base import BaseWidget
 
 class F1Widget(BaseWidget):
     name = 'f1'
-    template_name = "calendarApp/widgets/f1.html"
+    template_name = "calendarApp/widgets/f1Scores.html"
 
     _cached_data = None
     _cache_date = None

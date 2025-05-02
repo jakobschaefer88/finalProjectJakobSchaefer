@@ -5,7 +5,7 @@ from .base import BaseWidget
 
 class NCAAFootballWidget(BaseWidget):
     name = 'ncaaFootball'
-    template_name = "calendarApp/widgets/ncaa_football.html"
+    template_name = "calendarApp/widgets/ncaaFootballScores.html"
 
     api_url = "https://api.collegefootballdata.com/games"
     api_key = settings.API_KEY_COLLEGEFOOTBALLAPI

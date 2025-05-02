@@ -5,7 +5,7 @@ from .base import BaseWidget
 
 class TVShowsWidget(BaseWidget):
     name = 'tv_shows'
-    template_name = "calendarApp/widgets/tv_shows.html"
+    template_name = "calendarApp/widgets/tvShow.html"
 
     api_key = settings.API_KEY_TVSHOWAPI
     url = "https://api.themoviedb.org/3/tv/popular"

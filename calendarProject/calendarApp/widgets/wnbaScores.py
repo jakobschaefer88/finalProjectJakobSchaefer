@@ -5,7 +5,7 @@ from .base import BaseWidget
 
 class WNBAWidget(BaseWidget):
     name = 'wnba'
-    template_name = "calendarApp/widgets/wnba.html"
+    template_name = "calendarApp/widgets/wnbaScores.html"
 
     api_key = settings.API_KEY_SPORTSDATA
     league_id = "4388"  # WNBA

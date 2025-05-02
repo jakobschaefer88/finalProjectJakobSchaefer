@@ -4,7 +4,7 @@ from .base import BaseWidget
 
 class WordOfDayWidget(BaseWidget):
     name = 'word_of_the_day'
-    template_name = "calendarApp/widgets/word_of_the_day.html"
+    template_name = "calendarApp/widgets/wordOfDay.html"
 
     api_url = "https://random-word-api.herokuapp.com/word"
 

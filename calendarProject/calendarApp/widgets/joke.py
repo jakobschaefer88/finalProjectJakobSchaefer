@@ -4,7 +4,7 @@ from .base import BaseWidget
 
 class JokeWidget(BaseWidget):
     name = 'jokeWidget'
-    template_name = "calendarApp/widgets/joke_widget.html"
+    template_name = "calendarApp/widgets/joke.html"
 
     api_url = "https://official-joke-api.appspot.com/random_joke"
 

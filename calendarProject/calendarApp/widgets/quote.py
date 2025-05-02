@@ -4,7 +4,7 @@ import random
 import datetime
 
 class QuoteWidget(BaseWidget):
-    name = "Quote of the Day"
+    name = 'quoteWidget'
     template_name = "calendarApp/widgets/quote.html"
 
     api_url = "https://zenquotes.io/api/random"
@@ -33,6 +33,7 @@ class QuoteWidget(BaseWidget):
             return "No quote available today."
 
     def get_context_data(self, user=None, config=None):
+        quote = self.get_quote()
         return {
-            "quote": random.choice(self.quotes)
+            "quote": quote
         }

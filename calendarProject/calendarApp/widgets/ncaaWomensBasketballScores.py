@@ -5,7 +5,7 @@ from .base import BaseWidget
 
 class NCAAWomensBasketballWidget(BaseWidget):
     name = 'ncaa_womens_basketball'
-    template_name = "calendarApp/widgets/ncaa_womens_basketball.html"
+    template_name = "calendarApp/widgets/ncaaWomensBasketballScores.html"
 
     api_key = settings.API_KEY_SPORTSDATA
     league_id = "4397"  # NCAA Women's Basketball

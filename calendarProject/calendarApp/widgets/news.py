@@ -5,7 +5,7 @@ from .base import BaseWidget
 
 class NewsWidget(BaseWidget):
     name = 'newsWidget'
-    template_name = "calendarApp/widgets/news_widget.html"
+    template_name = "calendarApp/widgets/news.html"
 
     api_url = "https://newsapi.org/v2/top-headlines"
     api_key = settings.API_KEY_NEWSAPI

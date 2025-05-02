@@ -5,7 +5,7 @@ from .base import BaseWidget
 
 class MLBWidget(BaseWidget):
     name = 'mlb'
-    template_name = "calendarApp/widgets/mlb.html"
+    template_name = "calendarApp/widgets/mlbScores.html"
 
     api_key = settings.API_KEY_SPORTSDATA
     league_id = "4424"  # MLB
