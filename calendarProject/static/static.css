@@ -1,0 +1,41 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f7fa;
+    color: #333;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.widget {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.widget h2 {
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+
+.widget form {
+    margin-top: 1rem;
+}
+
+.widget ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.widget li {
+    margin-bottom: 0.5rem;
+}

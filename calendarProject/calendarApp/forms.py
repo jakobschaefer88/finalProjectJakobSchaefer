@@ -1,11 +1,25 @@
 from django import forms
-from .models import Event
+from .models import GroceryItem, TodoItem, MealPlan, TrackedStock
 
-class EventForm(forms.ModelForm):
+class GroceryItemForm(forms.ModelForm):
     class Meta:
-        model = Event
-        fields = ['title', 'description', 'startTime', 'endTime', 'allDay']
+        model = GroceryItem
+        fields = ['name']
+
+class TodoItemForm(forms.ModelForm):
+    class Meta:
+        model = TodoItem
+        fields = ['text']
+
+class MealPlanForm(forms.ModelForm):
+    class Meta:
+        model = MealPlan
+        fields = ['date', 'meal']
         widgets = {
-            'startTime': forms.TimeInput(attrs={'type': 'datetime-local'}),
-            'endTime': forms.TimeInput(attrs={'type': 'datetime-local'}),
+            'date': forms.DateInput(attrs={'type': 'date'}),
         }
+
+class TrackedStockForm(forms.ModelForm):
+    class Meta:
+        model = TrackedStock
+        fields = ['symbol']

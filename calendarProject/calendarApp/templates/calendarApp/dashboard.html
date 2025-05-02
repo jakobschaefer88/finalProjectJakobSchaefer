@@ -1,15 +1,25 @@
 {% extends "base.html" %}
 
-{% block content %}
-<h1>My Dashboard</h1>
+{% load static %}
 
-<div class="widgets-container">
-    {% for widget in widgets %}
-        {% include widget.template with widget.context %}
-    {% empty %}
-        <p>No widgets yet. <a hreg="{% url 'widget_list' %}">Add some!</a></p>
-    {% endfor %}
-</div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Widget Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="{% static 'js/widgets.js' %}" defer></script>
+</head>
+<body>
+    <h1 style="text-align:center; margin-top:1rem;">Welcome to Your Dashboard</h1>
 
-<a href="{% url 'widget_list' %}">+ Add Widget</a>
-{% endblock %}
+    <div class="dashboard">
+        {% for widget in rendered_widgets %}
+            <div class="widget">
+                {{ widget|safe }}
+            </div>
+        {% empty %}
+            <p>No widgets found.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
