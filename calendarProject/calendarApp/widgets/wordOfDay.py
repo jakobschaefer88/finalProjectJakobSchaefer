@@ -2,7 +2,7 @@ import requests
 import datetime
 from .base import BaseWidget
 
-class WordOfTheDayWidget(BaseWidget):
+class WordOfDayWidget(BaseWidget):
     name = 'word_of_the_day'
     template_name = "calendarApp/widgets/word_of_the_day.html"
 
