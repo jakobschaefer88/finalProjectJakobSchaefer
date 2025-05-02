@@ -23,7 +23,7 @@ pip install -r requirements.txt
 Don't forget to change into the correct directory
 ```
 python manage.py makemigrations
-python manage.py migrations
+python manage.py migrate
 ```
 
 ## Creating SuperUser
