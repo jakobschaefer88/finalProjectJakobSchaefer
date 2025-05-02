@@ -1,13 +1,48 @@
+<!DOCTYPE html>
+
 {% load static %}
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar Dashboard</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!-- Load the CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
+
 <body>
-    {% block content %}{% endblock %}
+    <header>
+        <div class="container">
+            <h1>My Calendar Dashboard</h1>
+        </div>
+    </header>
+
+    <!-- Main content layout (flexbox for calendar and widgets) -->
+    <div class="container">
+        <div class="calendar-section">
+            {% block calendar %}  <!-- Placeholder for calendar content -->
+            {% endblock %}
+        </div>
+
+        <div class="widgets-section">
+            {% block widgets %} <!-- Placeholder for widgets content -->
+            {% endblock %}
+        </div>
+    </div>
+
+    <!-- Optional footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Calendar Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript files -->
     <script src="{% static 'js/main.js' %}"></script>
+
 </body>
+
 </html>
