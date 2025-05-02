@@ -1,0 +1,8 @@
+<div class="widget sports-golf">
+  <h3>Recent Golf Results</h3>
+  <ul>
+    {% for player in leaderboard %}
+      <li>{{ player.name }} - {{ player.score }}</li>
+    {% endfor %}
+  </ul>
+</div>

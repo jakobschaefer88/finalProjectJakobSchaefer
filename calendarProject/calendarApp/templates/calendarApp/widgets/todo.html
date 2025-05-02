@@ -1,0 +1,8 @@
+<div class="widget todo-list">
+  <h3>To-Do List</h3>
+  <ul>
+    {% for task in tasks %}
+      <li>{{ task.text }}</li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,8 @@
+<div class="widget tv-shows">
+  <h3>Top TV Shows</h3>
+  <ol>
+    {% for show in shows %}
+      <li>{{ show.name }} ({{ show.rating }})</li>
+    {% endfor %}
+  </ol>
+</div>

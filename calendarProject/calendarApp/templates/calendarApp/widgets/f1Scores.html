@@ -1,0 +1,8 @@
+<div class="widget sports-f1">
+  <h3>F1 Results</h3>
+  <ul>
+    {% for result in results %}
+      <li>{{ result.position }}. {{ result.driver }} - {{ result.team }} ({{ result.time }})</li>
+    {% endfor %}
+  </ul>
+</div>

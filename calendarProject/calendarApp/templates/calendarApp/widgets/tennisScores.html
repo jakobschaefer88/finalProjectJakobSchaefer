@@ -1,0 +1,8 @@
+<div class="widget sports-tennis">
+  <h3>Tennis Results</h3>
+  <ul>
+    {% for match in matches %}
+      <li>{{ match.player1 }} vs {{ match.player2 }} - Winner: {{ match.winner }}</li>
+    {% endfor %}
+  </ul>
+</div>

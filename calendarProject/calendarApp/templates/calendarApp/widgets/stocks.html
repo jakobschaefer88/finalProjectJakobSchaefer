@@ -1,0 +1,8 @@
+<div class="widget stocks">
+  <h3>Stock Tracker</h3>
+  <ul>
+    {% for stock in stocks %}
+      <li>{{ stock.symbol }} - {{ stock.price }}</li>
+    {% endfor %}
+  </ul>
+</div>
