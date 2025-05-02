@@ -21,4 +21,3 @@ class WidgetInstance(models.Model):
 
     def __str__(self):
         return f"{self.widget_name} for {self.user.username}"
-
