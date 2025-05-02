@@ -1,14 +1,4 @@
-<div class="widget grocery-list">
+<div class="widget joke">
   <h3>Grocery List</h3>
-  <ul>
-    {% for item in items %}
-      <li>{{ item.name }}</li>
-    {% endfor %}
-  </ul>
+  <p>{{ groceryList }}</p>
 </div>
-
-<form method="POST" action="{% url 'grocery_list' %}">
-  {% csrf_token %}
-  <input type="text" name="name" placeholder="Add item..." required>
-  <button type="submit">Add</button>
-</form>

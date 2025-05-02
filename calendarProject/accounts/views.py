@@ -12,7 +12,7 @@ def register_view(request):
             return redirect("calendarApp:dashboard")
     else:
         form = UserRegisterForm()
-    return render(request, "accounts/register.html", {"form": form})
+    return render(request, "registration/register.html", {"form": form})
 
 def login_view(request):
     if request.method == "POST":
@@ -22,12 +22,8 @@ def login_view(request):
         if user:
             login(request, user)
             return redirect("calendarApp:dashboard")
-    return render(request, "accounts/login.html")
+    return render(request, "registration/login.html")
 
 def logout_view(request):
     logout(request)
     return redirect("accounts:login")
-
-@login_required
-def profile_view(request):
-    return render(request, "accounts/profile.html")

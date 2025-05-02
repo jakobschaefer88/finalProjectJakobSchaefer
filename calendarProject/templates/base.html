@@ -1,13 +1,90 @@
-{% load static %}
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calendar Dashboard</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title>My Calendar App</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'calendarApp/calendarApp.css' %}">
+    <style>
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .calendar-section {
+            width: 75%;
+            padding: 20px;
+            background-color: #f5f5f5;
+            overflow-y: auto;
+        }
+
+        .widgets-section {
+            width: 25%;
+            padding: 20px;
+            background-color: #fafafa;
+            overflow-y: auto;
+        }
+
+        table.calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table.calendar-table th, table.calendar-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .other-month {
+            background-color: #eee;
+        }
+
+        .widget {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .auth-links {
+            text-align: right;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            font-size: 14px;
+        }
+
+        .auth-links a {
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
-    {% block content %}{% endblock %}
-    <script src="{% static 'js/main.js' %}"></script>
+    <div class="auth-links">
+        {% if user.is_authenticated %}
+            Welcome, {{ user.username }} |
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;">
+                    Logout
+                </button>
+            </form>
+        {% else %}
+            {% csrf_token %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
 </body>
 </html>

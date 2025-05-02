@@ -1,37 +1,39 @@
 {% extends "base.html" %}
-
 {% load static %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <div class="container">
-        <!-- Calendar Section (75%) -->
-        <div class="calendar-section">
-            <!-- Your calendar goes here -->
-            {% block calendar %}
-                <div class="calendar">
-                    <!-- Calendar code here -->
-                </div>
-            {% endblock %}
-        </div>
-
-        <!-- Widgets Section (25%) -->
-        <div class="widgets-section">
-            {% block widgets %}
-                <!-- Widget containers go here -->
-                {% for widget in widgets %}
-                    <div class="widget">
-                        {% include widget.template_name %}
-                    </div>
+{% block content %}
+<div class="container">
+    <!-- Calendar Section (75%) -->
+    <div class="calendar-section">
+        <h2>{{ month }} {{ year }}</h2>
+        <table class="calendar-table">
+            <thead>
+                <tr>
+                    <th>Sun</th><th>Mon</th><th>Tue</th>
+                    <th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for week in calendar_weeks %}
+                    <tr>
+                        {% for day in week %}
+                            <td class="{% if not day.current_month %}other-month{% endif %}">
+                                {{ day.day }}
+                            </td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
-            {% endblock %}
-        </div>
+            </tbody>
+        </table>
     </div>
-</body>
-</html>
+
+    <!-- Widgets Section (25%) -->
+    <div class="widgets-section">
+        {% for widget in rendered_widgets %}
+            <div class="widget">
+                {{ widget|safe }}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
