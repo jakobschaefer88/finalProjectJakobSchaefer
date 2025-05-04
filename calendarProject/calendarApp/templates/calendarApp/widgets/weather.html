@@ -1,14 +1,31 @@
 {% load static %}
 
 <div class="widget weather" id="weather-widget" data-city="{{ city }}">
-  <h3>Weather in {{ city }}</h3>
+  <h3>Weather in {{ weather.city }}</h3>
   <img src="{{ weather.icon }}" alt="weather icon">
-  <p>{{ weather.description }} | {{ weather.temperature }}°C</p>
-  <p>Humidity: {{ weather.humidity }}%, Wind: {{ weather.wind_speed }} km/h</p>
-
-  <!-- No need for the input form anymore, we use the user's location -->
+  <p>{{ weather.description }} | {{ weather.temperature }}°F</p>
+  <p>Humidity: {{ weather.humidity }}%, Wind: {{ weather.wind_speed }} mph</p>
   <p>Location automatically detected based on your device.</p>
 </div>
 
 <!-- Include JavaScript -->
 <script src="{% static 'calendarApp/js/weather.js' %}"></script>
+
+<!-- Browser Geolocation Script -->
+<script>
+  (function() {
+    // If lat/lon already in URL, don't trigger again
+    if (!window.location.search.includes("lat") && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        const url = new URL(window.location.href);
+        url.searchParams.set("lat", lat);
+        url.searchParams.set("lon", lon);
+        window.location.href = url.toString();  // Reload with coordinates
+      }, function(error) {
+        console.warn("Geolocation error:", error.message);
+      });
+    }
+  })();
+</script>
