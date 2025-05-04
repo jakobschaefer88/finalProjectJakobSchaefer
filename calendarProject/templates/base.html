@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>My Calendar App</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'calendarApp/calendarApp.css' %}">

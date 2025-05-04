@@ -43,7 +43,7 @@ class TVShowsWidget(BaseWidget):
         except Exception:
             return []
 
-    def get_context_data(self, user=None, config=None):
+    def get_context_data(self, user=None, config=None, request=None):  # added 'request=None'
         return {
             "tv_shows": self.get_tv_shows()
         }

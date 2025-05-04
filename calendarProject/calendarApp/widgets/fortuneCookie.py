@@ -31,7 +31,7 @@ class FortuneCookieWidget(BaseWidget):
         except Exception:
             return "No fortune available today."
 
-    def get_context_data(self, user=None, config=None):
+    def get_context_data(self, user=None, config=None, request=None):  # added 'request=None'
         return {
             "fortune": self.get_fortune()
         }

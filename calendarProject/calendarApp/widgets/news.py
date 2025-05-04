@@ -46,7 +46,7 @@ class NewsWidget(BaseWidget):
                 "url": "#"
             }]
 
-    def get_context_data(self, user=None, config=None):
+    def get_context_data(self, user=None, config=None, request=None):  # added 'request=None'
         return {
             "headlines": self.get_news()
         }

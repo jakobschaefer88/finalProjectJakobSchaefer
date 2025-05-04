@@ -1,6 +1,14 @@
-<div class="widget weather">
+{% load static %}
+
+<div class="widget weather" id="weather-widget" data-city="{{ city }}">
   <h3>Weather in {{ city }}</h3>
   <img src="{{ weather.icon }}" alt="weather icon">
   <p>{{ weather.description }} | {{ weather.temperature }}°C</p>
   <p>Humidity: {{ weather.humidity }}%, Wind: {{ weather.wind_speed }} km/h</p>
+
+  <!-- No need for the input form anymore, we use the user's location -->
+  <p>Location automatically detected based on your device.</p>
 </div>
+
+<!-- Include JavaScript -->
+<script src="{% static 'calendarApp/js/weather.js' %}"></script>

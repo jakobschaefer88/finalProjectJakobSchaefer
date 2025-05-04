@@ -1,7 +1,7 @@
-from .base import BaseWidget
 import requests
 import random
 import datetime
+from .base import BaseWidget
 
 class QuoteWidget(BaseWidget):
     name = 'quoteWidget'
@@ -19,7 +19,7 @@ class QuoteWidget(BaseWidget):
             return self._cached_quote
 
         try:
-            response = requests.get(f"{self.api_url}?key={self.api_key}", timeout=5)
+            response = requests.get(self.api_url, timeout=5)
             if response.status_code == 200:
                 data = response.json()
                 if isinstance(data, list) and len(data) > 0:
@@ -32,7 +32,7 @@ class QuoteWidget(BaseWidget):
         except Exception:
             return "No quote available today."
 
-    def get_context_data(self, user=None, config=None):
+    def get_context_data(self, user=None, config=None, request=None):  # added 'request=None'
         quote = self.get_quote()
         return {
             "quote": quote

@@ -35,7 +35,7 @@ class WordOfDayWidget(BaseWidget):
         except Exception:
             return {}
 
-    def get_context_data(self, user=None, config=None):
+    def get_context_data(self, user=None, config=None, request=None):  # added 'request=None'
         word_data = self.get_word()
         return {
             "word_of_the_day": word_data

@@ -1,4 +1,4 @@
-import requests
+import yfinance as yf
 import datetime
 from django.conf import settings
 from .base import BaseWidget
@@ -7,8 +7,12 @@ class StocksWidget(BaseWidget):
     name = 'stocks'
     template_name = "calendarApp/widgets/stocks.html"
 
-    api_key = settings.API_KEY_STOCKSAPI
-    stock_symbols = ['AAPL', 'GOOGL', 'AMZN']  # Default stocks
+    # Map ticker symbols to friendly names
+    stock_info = {
+        '^GSPC': 'S&P 500',
+        '^DJI': 'Dow Jones',
+        '^IXIC': 'NASDAQ'
+    }
 
     _cached_data = None
     _cache_date = None
@@ -16,53 +20,41 @@ class StocksWidget(BaseWidget):
     def get_stock_data(self):
         today = datetime.date.today()
 
-        # Check if the data is already cached for today
         if self._cache_date == today and self._cached_data:
             return self._cached_data
 
         stock_data = []
-        for symbol in self.stock_symbols:
+        for symbol, display_name in self.stock_info.items():
             try:
-                url = f"https://www.alphavantage.co/query"
-                params = {
-                    "function": "TIME_SERIES_INTRADAY",
-                    "symbol": symbol,
-                    "interval": "5min",  # 5-minute interval data (can be adjusted)
-                    "apikey": self.api_key
-                }
+                stock = yf.Ticker(symbol)
+                historical_data = stock.history(period="1d")
 
-                # Send request to Alpha Vantage API
-                response = requests.get(url, params=params, timeout=5)
-                if response.status_code == 200:
-                    data = response.json()
-                    time_series = data.get("Time Series (5min)", {})
-                    latest_time = next(iter(time_series))  # Get the most recent timestamp
-                    latest_data = time_series[latest_time]
+                if not historical_data.empty:
+                    latest_data = historical_data.iloc[-1]
                     stock_data.append({
-                        "symbol": symbol,
-                        "price": latest_data.get("4. close", "N/A"),
-                        "timestamp": latest_time
+                        "name": display_name,
+                        "price": round(latest_data["Close"], 2),
+                        "timestamp": latest_data.name.strftime("%Y-%m-%d %H:%M:%S")
                     })
                 else:
                     stock_data.append({
-                        "symbol": symbol,
-                        "price": "Error fetching data",
+                        "name": display_name,
+                        "price": "Error: No data",
                         "timestamp": None
                     })
 
-            except Exception:
+            except Exception as e:
                 stock_data.append({
-                    "symbol": symbol,
-                    "price": "Error fetching data",
+                    "name": display_name,
+                    "price": f"Error: {str(e)}",
                     "timestamp": None
                 })
 
-        # Cache the stock data for today
         self._cached_data = stock_data
         self._cache_date = today
         return stock_data
 
-    def get_context_data(self, user=None, config=None):
+    def get_context_data(self, user=None, config=None, request=None):
         return {
             "stocks": self.get_stock_data()
         }

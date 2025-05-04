@@ -5,5 +5,5 @@ app_name = 'calendarApp'
 
 urlpatterns = [
     path('', views.dashboard, name='dashboard'),
-    path('widgets/grocery/', views.grocery_list_view, name='grocery_list'),
+    path("widgets/weather/update/", views.update_weather_city, name="update_weather_city"),
 ]

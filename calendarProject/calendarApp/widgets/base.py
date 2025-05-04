@@ -1,18 +1,21 @@
 from abc import ABC, abstractmethod
+from django.apps import config
+from django.http import request
+from django.template.loader import render_to_string
 
 class BaseWidget(ABC):
-    name = None  # e.g. "weather", "news"
-    template_name = None  # e.g. "calendarApp/widgets/weather.html"
+    name = None
+    template_name = None
 
     def __init__(self, config=None):
         self.config = config or {}
 
     @abstractmethod
     def get_context_data(self, user=None, config=None):
-        """Return context data passed to the widget template."""
         return {}
 
-    def render(self, user=None):
-        """Use Django's rendering engine to render the widget."""
-        from django.template.loader import render_to_string
-        return render_to_string(self.template_name, self.get_context_data(user, self.config))
+    def render(self, user=None, config=None, request=None):
+        context = self.get_context_data(user=user, config=config, request=request)
+        if request:
+            context["request"] = request  # Needed for csrf_token and user context
+        return render_to_string(self.template_name, context)

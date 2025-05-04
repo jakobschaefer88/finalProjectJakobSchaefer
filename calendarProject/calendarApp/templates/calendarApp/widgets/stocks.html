@@ -1,8 +1,11 @@
 <div class="widget stocks">
   <h3>Stock Tracker</h3>
   <ul>
-    {% for stock in stocks %}
-      <li>{{ stock.symbol }} - {{ stock.price }}</li>
-    {% endfor %}
+{% for stock in stocks %}
+  <div>
+    <strong>{{ stock.name }}</strong>: ${{ stock.price }} <br>
+    <small>{{ stock.timestamp }}</small>
+  </div>
+{% endfor %}
   </ul>
 </div>
