@@ -7,11 +7,6 @@
   <p>Humidity: {{ weather.humidity }}%, Wind: {{ weather.wind_speed }} mph</p>
   <p>Location automatically detected based on your device.</p>
 </div>
-
-<!-- Include JavaScript -->
-<script src="{% static 'calendarApp/js/weather.js' %}"></script>
-
-<!-- Browser Geolocation Script -->
 <script>
   (function() {
     // If lat/lon already in URL, don't trigger again

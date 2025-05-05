@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token }}">
     <title>My Calendar App</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'calendarApp/calendarApp.css' %}">
     <style>
         .container {
             display: flex;
@@ -59,6 +57,15 @@
         .auth-links a {
             margin-left: 10px;
         }
+
+        .today {
+            background-color: #ffe599;
+            font-weight: bold;
+            border: 2px solid #ffa500;
+            border-radius: 5px;
+            color: #000;
+}
+
     </style>
 </head>
 <body>

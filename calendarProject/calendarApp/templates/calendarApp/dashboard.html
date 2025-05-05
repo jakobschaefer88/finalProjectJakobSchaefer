@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load tz %}  {# for timezone support if needed #}
+{% now "Y-m-d" as today_date %}  {# get today's date in template #}
 
 {% block content %}
 <div class="container">
@@ -17,9 +19,11 @@
                 {% for week in calendar_weeks %}
                     <tr>
                         {% for day in week %}
-                            <td class="{% if not day.current_month %}other-month{% endif %}">
-                                {{ day.day }}
-                            </td>
+                            {% with day_date=day.date|stringformat:"Y-m-d" %}
+                                <td class="{% if not day.current_month %}other-month {% endif %}{% if day.is_today %}today{% endif %}">
+                                    {{ day.day }}
+                                </td>
+                            {% endwith %}
                         {% endfor %}
                     </tr>
                 {% endfor %}

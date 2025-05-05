@@ -6,27 +6,31 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from calendarApp.models import UserWidgetConfig
-
+from django.utils import timezone
 
 def generate_month_calendar(year, month):
     cal = calendar.Calendar(firstweekday=6)  # Week starts on Sunday
     month_days = cal.itermonthdays4(year, month)
     weeks = []
 
+    today = timezone.localdate()  # Get today's date for comparison
     week = []
     for day in month_days:
         y, m, d, weekday = day
+        day_date = date(y, m, d)
         if m == month:
             week.append({
                 'day': d,
-                'date': date(y, m, d),
+                'date': day_date,
                 'current_month': True,
+                'is_today': day_date == today,  # ✅ Add is_today flag
             })
         else:
             week.append({
                 'day': d,
-                'date': date(y, m, d),
+                'date': day_date,
                 'current_month': False,
+                'is_today': day_date == today,  # ✅ Still useful if today spills over
             })
 
         if len(week) == 7:
@@ -35,11 +39,12 @@ def generate_month_calendar(year, month):
 
     return weeks
 
+
 @login_required
 def dashboard(request):
     user = request.user
 
-    today = date.today()
+    today = timezone.localdate()
     calendar_weeks = generate_month_calendar(today.year, today.month)
 
     rendered_widgets = []
@@ -56,6 +61,7 @@ def dashboard(request):
     }
 
     return render(request, "calendarApp/dashboard.html", context)
+
 
 @login_required
 def update_weather_city(request):
