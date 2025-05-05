@@ -1,7 +1,21 @@
+'''
+INF601 - Programming in Python
+Final Project
+I, Jakob Schaefer, affirm that the work submitted for this assignment is entirely my own.
+I have not engaged in any form of academic dishonesty, including but not limited to cheating, plagiarism, or the use of unauthorized materials.
+I have neither provided nor received unauthorized assistance and have accurately cited all sources in adherence to academic standards.
+I understand that failing to comply with this integrity statement may result in consequences, including disciplinary actions as determined by my course instructor and outlined in institutional policies.
+By signing this statement, I acknowledge my commitment to upholding the principles of academic integrity.
+
+Joke Widget
+
+'''
+
 import requests
 import datetime
 from .base import BaseWidget
 
+#Widget that displays a joke
 class JokeWidget(BaseWidget):
     name = 'jokeWidget'
     template_name = "calendarApp/widgets/joke.html"
@@ -31,12 +45,14 @@ class JokeWidget(BaseWidget):
                     self._cache_date = today
                     return joke
             raise ValueError("Invalid joke response.")
+        #fallback if API fails
         except Exception:
             return {
                 "setup": "Why don't scientists trust atoms?",
                 "punchline": "Because they make up everything!"
             }
 
+    # returns the context needed to render the template
     def get_context_data(self, user=None, config=None, request=None):  # added 'request=None'
         return {
             "joke": self.get_joke()

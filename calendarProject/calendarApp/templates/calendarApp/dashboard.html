@@ -1,10 +1,26 @@
+<!--
+INF601 - Programming in Python
+Final Project
+I, Jakob Schaefer, affirm that the work submitted for this assignment is entirely my own.
+I have not engaged in any form of academic dishonesty, including but not limited to cheating, plagiarism, or the use of unauthorized materials.
+I have neither provided nor received unauthorized assistance and have accurately cited all sources in adherence to academic standards.
+I understand that failing to comply with this integrity statement may result in consequences, including disciplinary actions as determined by my course instructor and outlined in institutional policies.
+By signing this statement, I acknowledge my commitment to upholding the principles of academic integrity.
+
+Dashboard HTML File
+-->
+<!--Extends the base template to inherit its layout and structure. -->
+
 {% extends "base.html" %}
 {% load static %}
 {% load tz %}
+
+<!--Stores current date as today_date -->
 {% now "Y-m-d" as today_date %}
 
 {% block content %}
 <div class="container">
+
     <!-- Calendar Section (75%) -->
     <div class="calendar-section">
         <h2>{{ month }} {{ year }}</h2>
@@ -21,6 +37,7 @@
             <button type="submit">Add Event</button>
         </form>
 
+        <!--Monthly calendar Table -->
         <table class="calendar-table">
             <thead>
                 <tr>
@@ -60,6 +77,7 @@
     </div>
 </div>
 
+<!-- Javascript code for events -->
 <script>
     function toggleDescription(eventElement) {
         // Find the corresponding description
