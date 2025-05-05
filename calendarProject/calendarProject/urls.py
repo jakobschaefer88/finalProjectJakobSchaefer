@@ -23,7 +23,6 @@ I understand that failing to comply with this integrity statement may result in 
 By signing this statement, I acknowledge my commitment to upholding the principles of academic integrity.
 
 URLS File
-
 """
 
 
@@ -34,6 +33,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
-    path('groups/', include('groups.urls')),
     path('', include('calendarApp.urls')),
 ]

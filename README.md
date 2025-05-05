@@ -7,8 +7,7 @@
 ## Description
 
 This is django calendar project, with a scrolling side bar webpage.  
-This will have a login screen for individual users for personal dates, along with a group option to have shared dates on the calendar.  
-As for the scrolling sidebar, each user would be able to choose their widgets that they want to use, with a generic option for group calendars.
+This will have a login screen for individual users for personal dates.
 
 ## Getting Started
 
@@ -49,3 +48,6 @@ Inspiration, code snippets, etc.
 * [PrettyPrinted](https://prettyprinted.com/tutorials/creating-a-poll-app-in-django/)
 * [Youtube](https://www.youtube.com/watch?v=F5mRW0jo-U4)
 * [Youtube](https://www.youtube.com/watch?v=rHux0gMZ3Eg&t=160s)
+* [yfinance](https://pypi.org/project/yfinance/0.2.43/)
+* [chatGPT](https://chatgpt.com/share/681829cd-d994-8002-b0cb-be0c3690cac5)
+* [chatGPT](https://chatgpt.com/share/68182a28-582c-8002-a733-218f0fd4110f)

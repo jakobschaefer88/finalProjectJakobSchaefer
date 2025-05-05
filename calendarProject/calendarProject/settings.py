@@ -47,7 +47,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'calendarApp',
     'accounts',
-    'groups',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
