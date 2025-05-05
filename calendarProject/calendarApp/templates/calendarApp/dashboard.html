@@ -1,13 +1,26 @@
 {% extends "base.html" %}
 {% load static %}
-{% load tz %}  {# for timezone support if needed #}
-{% now "Y-m-d" as today_date %}  {# get today's date in template #}
+{% load tz %}
+{% now "Y-m-d" as today_date %}
 
 {% block content %}
 <div class="container">
     <!-- Calendar Section (75%) -->
     <div class="calendar-section">
         <h2>{{ month }} {{ year }}</h2>
+
+        <!-- Add Event Form -->
+        <form method="POST" action="{% url 'calendarApp:add_event' %}">
+            {% csrf_token %}
+            <label for="event_date">Date:</label>
+            <input type="date" id="event_date" name="event_date" required>
+
+            <label for="event_text">Event:</label>
+            <input type="text" id="event_text" name="event_text" required>
+
+            <button type="submit">Add Event</button>
+        </form>
+
         <table class="calendar-table">
             <thead>
                 <tr>
@@ -19,11 +32,17 @@
                 {% for week in calendar_weeks %}
                     <tr>
                         {% for day in week %}
-                            {% with day_date=day.date|stringformat:"Y-m-d" %}
-                                <td class="{% if not day.current_month %}other-month {% endif %}{% if day.is_today %}today{% endif %}">
-                                    {{ day.day }}
-                                </td>
-                            {% endwith %}
+                            <td class="{% if not day.current_month %}other-month {% endif %}{% if day.is_today %}today{% endif %}">
+                                <div>{{ day.day }}</div>
+                                {% for event in day.events %}
+                                    <div class="event" data-description="{{ event.description }}" onclick="toggleDescription(event)">
+                                        {{ event.title }}
+                                    </div>
+                                    <div class="event-description" style="display:none;">
+                                        {{ event.description }}
+                                    </div>
+                                {% endfor %}
+                            </td>
                         {% endfor %}
                     </tr>
                 {% endfor %}
@@ -40,4 +59,17 @@
         {% endfor %}
     </div>
 </div>
+
+<script>
+    function toggleDescription(eventElement) {
+        // Find the corresponding description
+        var description = eventElement.nextElementSibling;
+        if (description.style.display === "none" || description.style.display === "") {
+            description.style.display = "block";
+        } else {
+            description.style.display = "none";
+        }
+    }
+</script>
+
 {% endblock %}

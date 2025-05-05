@@ -15,3 +15,13 @@ class TrackedStock(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.symbol.upper()}"
+
+class Event(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    date = models.DateField()
+    time = models.TimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.title} on {self.date}"
