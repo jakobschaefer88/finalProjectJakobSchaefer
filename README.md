@@ -51,3 +51,6 @@ Inspiration, code snippets, etc.
 * [yfinance](https://pypi.org/project/yfinance/0.2.43/)
 * [chatGPT](https://chatgpt.com/share/681829cd-d994-8002-b0cb-be0c3690cac5)
 * [chatGPT](https://chatgpt.com/share/68182a28-582c-8002-a733-218f0fd4110f)
+* [OpenWeatherAPI](https://openweathermap.org/api)
+* [NewsAPI](https://newsapi.org/)
+* [TVShowsAPI](https://developer.themoviedb.org/docs/faq)
